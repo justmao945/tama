@@ -1,0 +1,10 @@
+sudo: false
+branches:
+  only:
+    - master
+    - develop
+language: go
+go:
+  - tip
+script:
+  - go test ./...
