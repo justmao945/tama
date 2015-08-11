@@ -1,4 +1,1 @@
-# intf
-
-Simple golang interface utilities.
-
+# tama
