@@ -1,3 +1,4 @@
+// Package wildcard implements a matcher to do wildcard pattern matching.
 package wildcard
 
 // Match returns true if str is matched by pat entirely in O(N) time complexity.
