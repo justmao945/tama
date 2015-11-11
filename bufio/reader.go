@@ -2,6 +2,7 @@ package bufio
 
 import "io"
 
+// Buffered reader to reduce syscall.
 type Reader struct {
 	reader io.Reader
 	data   []byte
@@ -9,6 +10,7 @@ type Reader struct {
 	end    int
 }
 
+// NewReader creates a buffered reader upon r, default capacity is 4MB if is 0.
 func NewReader(r io.Reader, capacity int) *Reader {
 	if capacity == 0 {
 		capacity = 4 * 1024 * 1024 // 4MB
@@ -21,6 +23,7 @@ func NewReader(r io.Reader, capacity int) *Reader {
 	}
 }
 
+// Len returns left bytes len
 func (b *Reader) Len() int {
 	return b.end - b.begin
 }

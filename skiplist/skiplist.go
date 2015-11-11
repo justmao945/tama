@@ -143,6 +143,10 @@ func (s *SkipList) Remove(key interface{}) bool {
 	update := make([]*Element, MaxLevel)
 	cur := s.find(key, update)
 
+	if cur == nil {
+		return false
+	}
+
 	if !s.equal(cur.Key, key) {
 		return false
 	}

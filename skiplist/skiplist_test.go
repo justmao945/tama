@@ -79,11 +79,19 @@ func TestSkipList(t *testing.T) {
 	}
 
 	// test remove
+	if l.Remove(1234000) {
+		t.Error("remove failed")
+	}
+
 	for _, v := range elems {
 		l.Remove(v)
 		t.Logf("remove %d:\n%+v\n%s", v, l, l.layout())
 		if l.Contains(v) {
 			t.Error(v)
 		}
+	}
+
+	if l.Remove(1234000) {
+		t.Error("remove failed")
 	}
 }
