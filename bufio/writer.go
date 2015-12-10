@@ -67,11 +67,15 @@ func (b *Writer) Write(p []byte) (n int, err error) {
 }
 
 func (b *Writer) Flush() (err error) {
-	n, err := b.writer.Write(b.data[b.begin:b.end])
-	b.begin += n
-	if b.begin == b.end { // reset when all success
-		b.begin = 0
-		b.end = 0
+	for b.begin != b.end {
+		var n int
+		n, err = b.writer.Write(b.data[b.begin:b.end])
+		if err != nil {
+			return
+		}
+		b.begin += n
 	}
+	b.begin = 0
+	b.end = 0
 	return
 }
