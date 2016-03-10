@@ -117,7 +117,7 @@ func OpenFile(name string, size int64) (*File, error) {
 			if fi.Size() != 0 {
 				return nil, fmt.Errorf("mmap: the size of file %v is %v != requested %v", name, fi.Size(), size)
 			}
-			_, err = f.WriteAt([]byte{0}, size-1)
+			err = f.Truncate(size)
 			if err != nil {
 				return nil, err
 			}
